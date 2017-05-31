@@ -1,18 +1,19 @@
 # 下载项目
 ```
-git clone ...
-
+git clone https://github.com/cobantou/KSBlog.git
 ```
 
 # 安装
 ```
+npm install pm2 -g 
 npm init
 ```
 
 # 启动
 启动这个应用（MacOS 或 Linux 平台）：
 ```
-DEBUG=myapp npm start
+//DEBUG=myapp npm start
+npm run pm2
 ```
 Windows 平台使用如下命令：
 ```

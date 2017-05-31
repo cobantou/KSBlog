@@ -1,7 +1,63 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    head
+
+        meta(http-equiv="X-UA-Compatible" ,content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1" )
+        meta(name="format-detection" ,content="telephone=no")
+        meta(name="renderer", content="webkit")
+        meta(http-equiv="Cache-Control" ,content="no-siteapp")
+        meta(charset='UTF-8')
+
+        title= title
+        link(rel='stylesheet', href='/amazeUI/css/amazeui.min.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        //页首
+        header.am-topbar
+            h1.am-topbar-brand
+                a(href='#') KS Blog
+            button.am-topbar-btn.am-topbar-toggle.am-btn.am-btn-sm.am-btn-success.am-show-sm-only(data-am-collapse="{target: '#doc-topbar-collapse'}")
+                span.am-sr-only 导航切换
+                span.am-icon-bars
+            #doc-topbar-collapse.am-collapse.am-topbar-collapse
+                ul.am-nav.am-nav-pills.am-topbar-nav
+                    li.am-active
+                        a(href='#') 首页
+                    li
+                        a(href='#') 项目
+                    li.am-dropdown(data-am-dropdown='')
+                        a.am-dropdown-toggle(data-am-dropdown-toggle='', href='javascript:;')
+                            | 菜单
+                            span.am-icon-caret-down
+                        ul.am-dropdown-content
+                            li.am-dropdown-header 标题
+                            li
+                                a(href='#') 关于我们
+                            li
+                                a(href='#') 关于字体
+                            li
+                                a(href='#') TIPS
+                form.am-topbar-form.am-topbar-left.am-form-inline.am-topbar-right(role='search')
+                    .am-form-group
+                        input.am-form-field.am-input-sm(type='text', placeholder='搜索文章')
+                    button.am-btn.am-btn-default.am-btn-sm(type='submit') 搜索
+
+        //内容
+        .am-g.am-g-fixed.blog-g-fixed
+            block content
+
+        //页脚
+
+        footer.am-footer.am-footer-default.blog-footer
+            .am-footer-miscs
+                p
+                    | 由
+                    a(href='', title='诺亚方舟', target='_blank') cobantou
+                    |             提供技术支持
+                p CopyRight©2017  AllMobilize Inc.
+                p 京ICP备xxx
+
+
+        script(src='/javascripts/jquery-3.2.1.min.js')
+        script(src='/amazeUI/js/amazeui.min.js')

@@ -1,1 +1,1 @@
-web:npm run pm2
+web:pm2 start processes.json

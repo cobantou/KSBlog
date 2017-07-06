@@ -1,1 +1,1 @@
-npm run pm2
+web:npm run pm2

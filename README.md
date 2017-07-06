@@ -5,6 +5,8 @@ git clone https://github.com/cobantou/KSBlog.git
 
 # 安装
 ```
+brew install Redis
+brew install mongodb
 npm install pm2 -g 
 npm init
 ```
@@ -19,12 +21,13 @@ Windows 平台使用如下命令：
 ```
 set DEBUG=myapp & npm start
 ```
-然后在浏览器中打开 http://localhost:3000/ 
+然后在浏览器中打开 http://localhost:3001/ 
 
 # 目录结构
 ```
 .
 ├── app.js                //？？？
+├── routerWeb.js             //路由
 ├── bin                   //？？？                    
 │   └── www
 ├── package.json          
@@ -33,7 +36,7 @@ set DEBUG=myapp & npm start
 │   ├── javascripts
 │   └── stylesheets
 │       └── style.css
-├── routes                //路由
+├── routes                //路由[不用了]
 │   ├── index.js
 │   └── users.js
 └── views                 //页面模板

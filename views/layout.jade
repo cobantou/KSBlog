@@ -14,9 +14,9 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
         //页首
-        header.am-topbar
+        header.am-topbar.am-topbar-inverse.am-topbar-fixed-top
             h1.am-topbar-brand
-                a(href='#') KS Blog
+                a(href='/') WhatEver
             button.am-topbar-btn.am-topbar-toggle.am-btn.am-btn-sm.am-btn-success.am-show-sm-only(data-am-collapse="{target: '#doc-topbar-collapse'}")
                 span.am-sr-only 导航切换
                 span.am-icon-bars
@@ -38,10 +38,15 @@ html
                                 a(href='#') 关于字体
                             li
                                 a(href='#') TIPS
-                form.am-topbar-form.am-topbar-left.am-form-inline.am-topbar-right(role='search')
+                form.am-topbar-form.am-topbar-left.am-form-inline.am-topbar-left(role='search')
                     .am-form-group
                         input.am-form-field.am-input-sm(type='text', placeholder='搜索文章')
                     button.am-btn.am-btn-default.am-btn-sm(type='submit') 搜索
+                .am-topbar-right
+                    a.am-btn.am-btn-primary.am-topbar-btn.am-btn-sm(href="/sign_up") 注册
+                .am-topbar-right
+                    a.am-btn.am-btn-primary.am-topbar-btn.am-btn-sm(href="/login") 登陆
+
 
         //内容
         .am-g.am-g-fixed.blog-g-fixed

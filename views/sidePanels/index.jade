@@ -9,20 +9,12 @@
                 | 正是為此而生。
             a.am-btn.am-btn-success.am-btn-sm(href='#') 查看更多 →
     section.am-panel.am-panel-default
-        .am-panel-hd 文章目录
+        .am-panel-hd 知乎专栏
         ul.am-list.blog-list
-            li
-                a(href='#') Google fonts 的字體（sans-serif 篇）
-            li
-                a(href='#') [but]服貿最前線？－再訪桃園機場
-            li
-                a(href='#') 到日星鑄字行學字型
-            li
-                a(href='#') glyph font vs. 漢字（上）
-            li
-                a(href='#') 浙江民間書刻體上線
-            li
-                a(href='#') [極短篇] Android v.s iOS，誰的字體好讀？
+            each recommendation in recommendations
+                li
+                    a(href="//zhuanlan.zhihu.com#{recommendation.url}") #{recommendation.title}
+
     section.am-panel.am-panel-default
         .am-panel-hd 团队成员
         .am-panel-bd

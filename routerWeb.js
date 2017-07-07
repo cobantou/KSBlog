@@ -1,5 +1,9 @@
+var config = require('./config');
+
 const express = require('express');
 var indexController = require('./controllers/index');
+var oauthController = require('./controllers/oauth');
+var signController = require('./controllers/sign');
 
 const router = express.Router();
 
@@ -13,14 +17,15 @@ router.get('/users', function (req, res, next) {
 
 
 /* login. */
-router.get('/login', function (req, res, next) {
-    res.render('login', {title: 'Express'});
-});
+router.get('/login', signController.login);
 
 /* articles */
 router.get('/articles', function (req, res, next) {
     res.render('articles/total_list', {title: 'Express'});
 });
+
+/* OAuth */
+router.get('/oauth/githubCallback', oauthController.github);
 
 
 module.exports = router;

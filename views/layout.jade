@@ -42,10 +42,21 @@ html
                     .am-form-group
                         input.am-form-field.am-input-sm(type='text', placeholder='搜索文章')
                     button.am-btn.am-btn-default.am-btn-sm(type='submit') 搜索
-                .am-topbar-right
-                    a.am-btn.am-btn-primary.am-topbar-btn.am-btn-sm(href="/sign_up") 注册
-                .am-topbar-right
-                    a.am-btn.am-btn-primary.am-topbar-btn.am-btn-sm(href="/login") 登陆
+                if userInfo
+                    .am-topbar-right
+                        .am-dropdown(data-am-dropdown="{boundary: '.am-topbar'}")
+                            button.am-btn.am-btn-secondary.am-topbar-btn.am-btn-sm.am-dropdown-toggle(data-am-dropdown-toggle='')
+                                | #{userInfo.name}
+                                span.am-icon-caret-down
+                            ul.am-dropdown-content
+                                li
+                                    a(href='#') 退出
+                else
+                    .am-topbar-right
+                        a.am-btn.am-btn-primary.am-topbar-btn.am-btn-sm(href="/sign_up") 注册
+                    .am-topbar-right
+                        a.am-btn.am-btn-primary.am-topbar-btn.am-btn-sm(href="/login") 登陆
+
 
 
         //内容

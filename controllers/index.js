@@ -3,6 +3,8 @@ var request = Promise.promisifyAll(require("request"));
 
 
 var index = function (req, res, next) {
+    var session = req.session;
+
     request.getAsync('https://zhuanlan.zhihu.com/api/columns/DaqizhiXiang/posts?limit=20&offset=20')
         .then(function (data) {
             var resData;
@@ -12,7 +14,8 @@ var index = function (req, res, next) {
                 resData = {
                     title: 'WhatEver',
                     articles: body,
-                    recommendations: [{title: "title1", url: ""}]
+                    recommendations: [{title: "title1", url: ""}],
+                    userInfo:session.userInfo
                 }
 
             }

@@ -1,4 +1,6 @@
 const express = require('express');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -6,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const lessMiddleware = require('less-middleware');
 var cors = require('cors');
+
 
 const router = require('./routerWeb');
 const apiRouter = require('./routerApi');
@@ -24,6 +27,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// 设置 Session
+app.use(session({
+    name: "WTID",
+    store: new RedisStore({
+        host: "127.0.0.1",
+        port: 6379,
+        db: 0
+    }),
+    resave:false,
+    saveUninitialized:false,
+    secret: 'what ever secret'
+}))
 
 //路由
 app.use('/', router);

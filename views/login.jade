@@ -9,12 +9,13 @@ block content
             a.am-btn.am-btn-secondary.am-btn-sm(href = "//github.com/login/oauth/authorize?client_id=#{clientId}&scope=user:email")
                 i.am-icon-github.am-icon-sm
                 |  Github
-            a.am-btn.am-btn-success.am-btn-sm(href='#')
-                i.am-icon-google-plus-square.am-icon-sm
-                |                 Google+
-            a.am-btn.am-btn-primary.am-btn-sm(href='#')
-                i.am-icon-stack-overflow.am-icon-sm
-                |                 stackOverflow
+            //
+                a.am-btn.am-btn-success.am-btn-sm(href='#')
+                    i.am-icon-google-plus-square.am-icon-sm
+                    |                 Google+
+                a.am-btn.am-btn-primary.am-btn-sm(href='#')
+                    i.am-icon-stack-overflow.am-icon-sm
+                    |                 stackOverflow
         br
         br
         form.am-form(method='post',action='api/login')

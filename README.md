@@ -17,6 +17,10 @@ npm init
 ```
 
 # 启动
+启动redis，进入" usr/local/bin "执行
+```
+./redis-server & 
+```
 启动这个应用（MacOS 或 Linux 平台）：
 ```
 //DEBUG=myapp npm start

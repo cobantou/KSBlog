@@ -7,7 +7,7 @@ var request = Promise.promisifyAll(require("request"));
  * 1.用户通过链接登陆github，成功后github跳转至回调页面，查询参数有code
  * 2.发送code，clientId，clientSecret到github去获取token
  * 3.发送token到github去获取用户信息
- * 4.将信息存储到redis
+ * 4.将信息存储到session
  * @param req
  * @param res
  * @param next
@@ -47,18 +47,18 @@ var github = function (req, res, next) {
                 var body = JSON.parse(data.body)
                 info={
                     name:body.login,
-                    avatar:body.avartar_url,
+                    avatar:body.avatar_url,
                     id:body.id
                 }
             }
             return info
         })
+    }).then(function(info){
+        var session =req.session;
+        session.userInfo = info;
+
+        res.redirect('/');
     })
-    //todo 拿到了info怎么给出？存到redis里面？
-    /* .then(function (resData) {
-     console.log(resData)
-     res.render('index', resData);
-     })*/
 };
 
 

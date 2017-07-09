@@ -33,9 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     name: "WTID",
     store: new RedisStore({
-        host: "127.0.0.1",
+/*        host: "127.0.0.1",
         port: 6379,
-        db: 0
+        db: 0*/
     }),
     resave:false,
     saveUninitialized:false,

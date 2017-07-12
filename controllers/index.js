@@ -11,6 +11,12 @@ var index = function (req, res, next) {
 
             if (!data.error && data.statusCode == 200) {
                 var body = JSON.parse(data.body)
+
+                body.map(function(i){
+                    i.titleImage="/fileProxy/image?url="+i.titleImage;
+                    return i;
+                })
+
                 resData = {
                     title: 'WhatEver',
                     articles: body,
@@ -33,7 +39,6 @@ var index = function (req, res, next) {
                 })
         })
         .then(function (resData) {
-            console.log(resData)
             res.render('index', resData);
         })
 };

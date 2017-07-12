@@ -23,9 +23,9 @@ html
             #doc-topbar-collapse.am-collapse.am-topbar-collapse
                 ul.am-nav.am-nav-pills.am-topbar-nav
                     li.am-active
-                        a(href='#') 首页
+                        a(href='/') 首页
                     li
-                        a(href='#') 项目
+                        a(href='/write') 写点什么
                     li.am-dropdown(data-am-dropdown='')
                         a.am-dropdown-toggle(data-am-dropdown-toggle='', href='javascript:;')
                             | 菜单
@@ -50,7 +50,7 @@ html
                                 span.am-icon-caret-down
                             ul.am-dropdown-content
                                 li
-                                    a(href='#') 退出
+                                    a(href='/signout') 退出
                 else
                     .am-topbar-right
                         a.am-btn.am-btn-primary.am-topbar-btn.am-btn-sm(href="/sign_up") 注册
@@ -77,3 +77,4 @@ html
 
         script(src='/javascripts/jquery-3.2.1.min.js')
         script(src='/amazeUI/js/amazeui.min.js')
+

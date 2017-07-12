@@ -1,1 +1,1 @@
-web: node ./bin/www ;./redis-server &
+web: node ./bin/www

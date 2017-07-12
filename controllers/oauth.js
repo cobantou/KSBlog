@@ -1,7 +1,13 @@
 var config = require('../config');
-
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"));
+
+var github = function(req, res, next){
+    res.redirect("https://github.com/login/oauth/authorize?client_id="+config.github.clientId+"&scope=repo")
+}
+
+exports.github = github;
+
 
 /**
  * 1.用户通过链接登陆github，成功后github跳转至回调页面，查询参数有code
@@ -12,7 +18,7 @@ var request = Promise.promisifyAll(require("request"));
  * @param res
  * @param next
  */
-var github = function (req, res, next) {
+var githubCallback = function (req, res, next) {
     var clientId = config.github.clientId;
     var clientSecret = config.github.clientSecret;
     var code = req.query.code;
@@ -48,7 +54,8 @@ var github = function (req, res, next) {
                 info={
                     name:body.login,
                     avatar:body.avatar_url,
-                    id:body.id
+                    id:body.id,
+                    accessToken:accessToken
                 }
             }
             return info
@@ -62,5 +69,5 @@ var github = function (req, res, next) {
 };
 
 
-exports.github = github;
+exports.githubCallback = githubCallback;
 

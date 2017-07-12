@@ -1,0 +1,31 @@
+//Created by pengshuo on 17/5/31.
+extends ../layout
+
+block content
+    .am-u-md-12
+        form.am-form(action='/writeToGithub' method='post')
+            fieldset
+                .am-form-group
+                    label(for='doc-ta-1') 我要吐槽
+                    textarea#doc-ta-1(rows='5',name='body')
+                p
+                    if userInfo
+                        button.am-btn.am-btn-default(type='submit') 提交
+                    else
+                        button.am-btn.am-btn-default(type='submit' disabled="disabled") 提交
+
+        ul.am-comments-list.am-comments-list-flip
+            each comment in comments
+                li.am-comment
+                    article.am-comment
+                        a(href='#link-to-user-home')
+                            img.am-comment-avatar(src='#{comment.user.avatar_url}', alt='', width='48', height='48')
+                        .am-comment-main
+                            header.am-comment-hd
+                                // <h3 class="am-comment-title">评论标题</h3>
+                                .am-comment-meta
+                                    a.am-comment-author(href='#link-to-user') #{comment.user.login}
+                                    |         评论于
+                                    time(datetime='#{comment.updated_at}', title='#{comment.updated_at}') #{comment.updated_at}
+                            .am-comment-bd
+                                | #{comment.body}

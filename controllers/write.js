@@ -1,6 +1,7 @@
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"));
 var config = require('../config');
+var marked = require('marked');
 
 
 var index = function (req, res, next) {
@@ -19,9 +20,14 @@ var index = function (req, res, next) {
         if (!data.error && data.statusCode == 200) {
             var body = JSON.parse(data.body)
             comments = body;
+            comments.map(function (i) {
+                i.body = marked(i.body)
+                return i;
+            })
         }
         return comments
     }).then(function (comments) {
+
         var resData = {
             title: "写点什么",
             userInfo: session.userInfo,

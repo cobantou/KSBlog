@@ -10,7 +10,6 @@ var login = function (req, res, next) {
 exports.login = login;
 
 var signout = function (req, res, next) {
-    //todo 清除session
     req.session.userInfo = undefined;
 
     res.redirect('/');

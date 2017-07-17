@@ -2,17 +2,26 @@
 extends ../layout
 
 block content
+    style.
+        pre {
+            padding:0
+        }
+    link(rel='stylesheet', href='https://cdn.bootcss.com/highlight.js/9.12.0/styles/atelier-dune-light.min.css')
+    script(src='http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js')
+    script.
+        hljs.initHighlightingOnLoad()
+
     .am-u-md-12
         form.am-form(action='/writeToGithub' method='post')
             fieldset
                 .am-form-group
                     label(for='doc-ta-1') 我要吐槽
-                    textarea#doc-ta-1(rows='5',name='body')
+                    textarea#doc-ta-1(rows='5',name='body',placeholder='支持markdown格式')
                 p
                     if userInfo
-                        button.am-btn.am-btn-default(type='submit') 提交
+                        button.am-btn.am-btn-primary(type='submit') 提交
                     else
-                        button.am-btn.am-btn-default(type='submit' disabled="disabled") 提交
+                        button.am-btn.am-btn-primary(type='submit' disabled="disabled") 提交
 
         ul.am-comments-list.am-comments-list-flip
             each comment in comments
@@ -28,4 +37,4 @@ block content
                                     |         评论于
                                     time(datetime='#{comment.updated_at}', title='#{comment.updated_at}') #{comment.updated_at}
                             .am-comment-bd
-                                | #{comment.body}
+                                != comment.body

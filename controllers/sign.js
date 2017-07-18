@@ -1,15 +1,15 @@
-var Promise = require("bluebird");
-var request = Promise.promisifyAll(require("request"));
-var config = require('../config');
+const Promise = require("bluebird");
+const request = Promise.promisifyAll(require("request"));
+const config = require('../config');
 
-var login = function (req, res, next) {
+let login = function (req, res, next) {
     res.render('login', {title: 'Express', clientId: config.github.clientId});
 };
 
 
 exports.login = login;
 
-var signout = function (req, res, next) {
+let signout = function (req, res, next) {
     req.session.userInfo = undefined;
 
     res.redirect('/');

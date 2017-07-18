@@ -1,9 +1,9 @@
-var config = require('../config');
-var Promise = require("bluebird");
-var request = Promise.promisifyAll(require("request"));
+const config = require('../config');
+const Promise = require("bluebird");
+const request = Promise.promisifyAll(require("request"));
 
-var github = function(req, res, next){
-    res.redirect("https://github.com/login/oauth/authorize?client_id="+config.github.clientId+"&scope=repo")
+let github = function (req, res, next) {
+    res.redirect("https://github.com/login/oauth/authorize?client_id=" + config.github.clientId + "&scope=repo")
 }
 
 exports.github = github;
@@ -18,10 +18,10 @@ exports.github = github;
  * @param res
  * @param next
  */
-var githubCallback = function (req, res, next) {
-    var clientId = config.github.clientId;
-    var clientSecret = config.github.clientSecret;
-    var code = req.query.code;
+let githubCallback = function (req, res, next) {
+    let clientId = config.github.clientId;
+    let clientSecret = config.github.clientSecret;
+    let code = req.query.code;
 
     request.postAsync({
         headers: {
@@ -33,35 +33,35 @@ var githubCallback = function (req, res, next) {
             client_secret: clientSecret,
             code: code
         }
-    }).then(function (data) {
-        var accessToken;
+    }).then((data) => {
+        let accessToken;
         if (!data.error && data.statusCode == 200) {
-            var body = JSON.parse(data.body)
+            let body = JSON.parse(data.body)
             accessToken = body.access_token
 
         }
         return accessToken
-    }).then(function (accessToken) {
+    }).then((accessToken) => {
         return request.getAsync({
             url: 'https://api.github.com/user?access_token=' + accessToken,
             headers: {
                 "user-agent": "whatever"
             }
-        }).then(function (data) {
-            var info;
+        }).then((data) => {
+            let info;
             if (!data.error && data.statusCode == 200) {
-                var body = JSON.parse(data.body)
-                info={
-                    name:body.login,
-                    avatar:body.avatar_url,
-                    id:body.id,
-                    accessToken:accessToken
+                let body = JSON.parse(data.body)
+                info = {
+                    name: body.login,
+                    avatar: body.avatar_url,
+                    id: body.id,
+                    accessToken: accessToken
                 }
             }
             return info
         })
-    }).then(function(info){
-        var session =req.session;
+    }).then((info) => {
+        let session = req.session;
         session.userInfo = info;
 
         res.redirect('/');

@@ -1,19 +1,18 @@
 const express = require('express');
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const lessMiddleware = require('less-middleware');
-var cors = require('cors');
-
+const cors = require('cors');
 
 const router = require('./routerWeb');
 const apiRouter = require('./routerApi');
 
-const app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,7 +49,7 @@ app.use('/api/', cors(), apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

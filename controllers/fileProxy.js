@@ -1,9 +1,8 @@
-var Promise = require("bluebird");
-var request = Promise.promisifyAll(require("request"));
-var config = require('../config');
+const Promise = require("bluebird");
+const request = Promise.promisifyAll(require("request"));
 
-var image = function (req, res, next) {
-    var url = req.query.url
+let image = function (req, res, next) {
+    let url = req.query.url
 
     request.get({
         url: url,

@@ -1,24 +1,24 @@
-var Promise = require("bluebird");
-var request = Promise.promisifyAll(require("request"));
-var config = require('../config');
-var marked = require('marked');
+const Promise = require("bluebird");
+const request = Promise.promisifyAll(require("request"));
+const config = require('../config');
+const marked = require('marked');
 
 
-var index = function (req, res, next) {
-    var clientId = config.github.clientId;
-    var clientSecret = config.github.clientSecret;
-    var session = req.session;
+let index = function (req, res, next) {
+    let clientId = config.github.clientId;
+    let clientSecret = config.github.clientSecret;
+    let session = req.session;
 
-    //评论列表:https://api.github.com/repos/cobantou/ksblog/issues/1/comments
+    //评论列表
     request.getAsync({
         url: "https://api.github.com/repos/cobantou/ksblog/issues/1/comments",
         headers: {
             "user-agent": "whatever"
         }
-    }).then(function (data) {
-        var comments;
+    }).then((data) => {
+        let comments;
         if (!data.error && data.statusCode == 200) {
-            var body = JSON.parse(data.body)
+            let body = JSON.parse(data.body)
             comments = body;
             comments.map(function (i) {
                 i.body = marked(i.body)
@@ -26,9 +26,9 @@ var index = function (req, res, next) {
             })
         }
         return comments
-    }).then(function (comments) {
+    }).then((comments) => {
 
-        var resData = {
+        let resData = {
             title: "写点什么",
             userInfo: session.userInfo,
             client_id: clientId,
@@ -43,8 +43,8 @@ var index = function (req, res, next) {
 };
 exports.index = index;
 
-var postGithub = function (req, res, next) {
-    var token = req.session.userInfo && req.session.userInfo.accessToken;
+let postGithub = function (req, res, next) {
+    let token = req.session.userInfo && req.session.userInfo.accessToken;
 
     request.postAsync({
         url: "https://api.github.com/repos/cobantou/ksblog/issues/1/comments",
@@ -54,7 +54,7 @@ var postGithub = function (req, res, next) {
         },
         body: JSON.stringify({"body": req.body.body})
 
-    }).then(function (data) {
+    }).then((data) => {
 
         if (!data.error && data.statusCode == 201) {
             res.redirect("/write")

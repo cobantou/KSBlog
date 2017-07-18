@@ -1,13 +1,13 @@
-var config = require('./config');
+const config = require('./config');
 
 const express = require('express');
-var indexController = require('./controllers/index');
-var oauthController = require('./controllers/oauth');
-var signController = require('./controllers/sign');
-var fileProxyController = require('./controllers/fileProxy');
-var writeController = require('./controllers/write');
+const indexController = require('./controllers/index');
+const oauthController = require('./controllers/oauth');
+const signController = require('./controllers/sign');
+const fileProxyController = require('./controllers/fileProxy');
+const writeController = require('./controllers/write');
 
-const router = express.Router();
+let router = express.Router();
 
 /* home page. */
 router.get('/', indexController.index);

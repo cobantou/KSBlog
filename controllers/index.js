@@ -1,19 +1,19 @@
-var Promise = require("bluebird");
-var request = Promise.promisifyAll(require("request"));
+const Promise = require("bluebird");
+const request = Promise.promisifyAll(require("request"));
 
 
-var index = function (req, res, next) {
-    var session = req.session;
+let index = function (req, res, next) {
+    let session = req.session;
 
     request.getAsync('https://zhuanlan.zhihu.com/api/columns/DaqizhiXiang/posts?limit=20&offset=20')
-        .then(function (data) {
-            var resData;
+        .then((data) => {
+            let resData;
 
             if (!data.error && data.statusCode == 200) {
-                var body = JSON.parse(data.body)
+                let body = JSON.parse(data.body)
 
-                body.map(function(i){
-                    i.titleImage="/fileProxy/image?url="+i.titleImage;
+                body.map(function (i) {
+                    i.titleImage = "/fileProxy/image?url=" + i.titleImage;
                     return i;
                 })
 
@@ -21,16 +21,16 @@ var index = function (req, res, next) {
                     title: 'WhatEver',
                     articles: body,
                     recommendations: [{title: "title1", url: ""}],
-                    userInfo:session.userInfo
+                    userInfo: session.userInfo
                 }
 
             }
 
             return resData
         })
-        .then(function (resData) {
+        .then((resData) => {
             return request.getAsync('https://zhuanlan.zhihu.com/api/recommendations/posts?limit=5&offset=0&seed=4')
-                .then(function (data) {
+                .then((data) => {
                     if (!data.error && data.statusCode == 200) {
                         var body = JSON.parse(data.body)
                         resData.recommendations = body;
@@ -38,7 +38,7 @@ var index = function (req, res, next) {
                     return resData
                 })
         })
-        .then(function (resData) {
+        .then((resData) => {
             res.render('index', resData);
         })
 };

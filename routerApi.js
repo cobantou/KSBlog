@@ -1,8 +1,7 @@
-var express = require('express');
-var testController = require('./api/test');
-var signController = require('./api/sign');
-var router = express.Router();
-
+const express = require('express');
+const testController = require('./api/test');
+const signController = require('./api/sign');
+let router = express.Router();
 
 //请求测试
 router.get('/test', testController.getTest);

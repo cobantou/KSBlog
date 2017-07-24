@@ -13,6 +13,8 @@ git clone https://github.com/cobantou/KSBlog.git
 brew install Redis
 brew install mongodb
 npm install pm2 -g 
+npm install -g typescript
+npm install typings --global
 npm init
 ```
 
@@ -22,6 +24,9 @@ npm init
 ./redis-server & 
 ```
 启动这个应用（MacOS 或 Linux 平台）：
+```angular2html
+tsc //开发环境
+```
 ```
 //DEBUG=myapp npm start
 npm run pm2
@@ -31,6 +36,12 @@ Windows 平台使用如下命令：
 set DEBUG=myapp & npm start
 ```
 然后在浏览器中打开 http://localhost:3001/ 
+
+安装types
+```
+npm install --save @types/xx
+
+```
 
 # 目录结构
 ```

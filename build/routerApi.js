@@ -1,15 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
-const testController = require('./api/test');
-const signController = require('./api/sign');
+const test_1 = require("./api/test");
+const sign_1 = require("./api/sign");
 let router = express.Router();
 //请求测试
-router.get('/test', testController.getTest);
-router.post("/test", testController.postTest);
+router.get('/test', test_1.getTest);
+router.post("/test", test_1.postTest);
 //sign
-router.post("/login", signController.login);
-/*
-module.exports = router;
-*/
+router.post("/login", sign_1.login);
 exports.default = router;

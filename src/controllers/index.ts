@@ -2,7 +2,7 @@ import Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
 
 
-let index = function (req, res, next) {
+export let index = function (req, res, next) {
     let session = req.session;
 
     request.getAsync('https://zhuanlan.zhihu.com/api/columns/DaqizhiXiang/posts?limit=20&offset=20')
@@ -44,5 +44,4 @@ let index = function (req, res, next) {
 };
 
 
-exports.index = index;
 

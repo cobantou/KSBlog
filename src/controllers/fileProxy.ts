@@ -1,7 +1,7 @@
 import Promise = require("bluebird");
 let request = Promise.promisifyAll(require("request"));
 
-let image = function (req, res, next) {
+export let image = function (req, res, next) {
     let url = req.query.url
     request.get({
         url: url,
@@ -9,5 +9,4 @@ let image = function (req, res, next) {
 };
 
 
-exports.image = image;
 

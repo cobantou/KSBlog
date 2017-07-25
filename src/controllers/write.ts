@@ -4,7 +4,7 @@ import config from '../config';
 const marked = require('marked');
 
 
-let index = function (req, res, next) {
+export let index = function (req, res, next) {
     let clientId = config.github.clientId;
     let clientSecret = config.github.clientSecret;
     let session = req.session;
@@ -41,9 +41,8 @@ let index = function (req, res, next) {
 
 
 };
-exports.index = index;
 
-let postGithub = function (req, res, next) {
+export let postGithub = function (req, res, next) {
     let token = req.session.userInfo && req.session.userInfo.accessToken;
 
     request.postAsync({
@@ -62,5 +61,4 @@ let postGithub = function (req, res, next) {
 
     })
 };
-exports.postGithub = postGithub;
 

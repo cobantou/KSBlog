@@ -4,7 +4,7 @@ const Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
 const config_1 = require("../config");
 const marked = require('marked');
-let index = function (req, res, next) {
+exports.index = function (req, res, next) {
     let clientId = config_1.default.github.clientId;
     let clientSecret = config_1.default.github.clientSecret;
     let session = req.session;
@@ -36,8 +36,7 @@ let index = function (req, res, next) {
         res.render('articles/write', resData);
     });
 };
-exports.index = index;
-let postGithub = function (req, res, next) {
+exports.postGithub = function (req, res, next) {
     let token = req.session.userInfo && req.session.userInfo.accessToken;
     request.postAsync({
         url: "https://api.github.com/repos/cobantou/ksblog/issues/1/comments",
@@ -52,4 +51,3 @@ let postGithub = function (req, res, next) {
         }
     });
 };
-exports.postGithub = postGithub;

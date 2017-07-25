@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
-let index = function (req, res, next) {
+exports.index = function (req, res, next) {
     let session = req.session;
     request.getAsync('https://zhuanlan.zhihu.com/api/columns/DaqizhiXiang/posts?limit=20&offset=20')
         .then((data) => {
@@ -36,4 +36,3 @@ let index = function (req, res, next) {
         res.render('index', resData);
     });
 };
-exports.index = index;

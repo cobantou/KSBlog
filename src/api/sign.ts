@@ -1,4 +1,4 @@
-let login = function (req, res, next) {
+export let login = function (req, res, next) {
     let email = req.body.email;
     let password = req.body.password;
     if (email === "cobantou@qq.com" && password === "123456") {
@@ -7,14 +7,10 @@ let login = function (req, res, next) {
 
     return res.send('login test');
 };
-exports.login = login;
-
-let logout = function (req, res, next) {
+export let logout = function (req, res, next) {
     res.send('logout test');
 };
-exports.logout = logout;
 
-let signUp = function (req, res, next) {
+export let signUp = function (req, res, next) {
     res.send('signUp test');
 };
-exports.signUp = signUp;

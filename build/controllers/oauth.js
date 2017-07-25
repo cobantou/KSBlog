@@ -3,10 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = require("../config");
 const Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
-let github = function (req, res, next) {
+exports.github = function (req, res, next) {
     res.redirect("https://github.com/login/oauth/authorize?client_id=" + config_1.default.github.clientId + "&scope=repo");
 };
-exports.github = github;
 /**
  * 1.用户通过链接登陆github，成功后github跳转至回调页面，查询参数有code
  * 2.发送code，clientId，clientSecret到github去获取token
@@ -16,7 +15,7 @@ exports.github = github;
  * @param res
  * @param next
  */
-let githubCallback = function (req, res, next) {
+exports.githubCallback = function (req, res, next) {
     let clientId = config_1.default.github.clientId;
     let clientSecret = config_1.default.github.clientSecret;
     let code = req.query.code;
@@ -62,4 +61,3 @@ let githubCallback = function (req, res, next) {
         res.redirect('/');
     });
 };
-exports.githubCallback = githubCallback;

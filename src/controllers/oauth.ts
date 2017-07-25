@@ -2,11 +2,10 @@ import config from '../config';
 import Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
 
-let github = function (req, res, next) {
+export let github = function (req, res, next) {
     res.redirect("https://github.com/login/oauth/authorize?client_id=" + config.github.clientId + "&scope=repo")
 }
 
-exports.github = github;
 
 
 /**
@@ -18,7 +17,7 @@ exports.github = github;
  * @param res
  * @param next
  */
-let githubCallback = function (req, res, next) {
+export let githubCallback = function (req, res, next) {
     let clientId = config.github.clientId;
     let clientSecret = config.github.clientSecret;
     let code = req.query.code;
@@ -69,5 +68,4 @@ let githubCallback = function (req, res, next) {
 };
 
 
-exports.githubCallback = githubCallback;
 

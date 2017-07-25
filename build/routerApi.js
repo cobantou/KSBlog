@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const testController = require('./api/test');
 const signController = require('./api/sign');
@@ -8,4 +9,7 @@ router.get('/test', testController.getTest);
 router.post("/test", testController.postTest);
 //sign
 router.post("/login", signController.login);
+/*
 module.exports = router;
+*/
+exports.default = router;

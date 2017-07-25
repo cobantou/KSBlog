@@ -9,8 +9,8 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const lessMiddleware = require("less-middleware");
 const cors = require("cors");
-const router = require("./routerWeb");
-const apiRouter = require("./routerApi");
+const routerWeb_1 = require("./routerWeb");
+const routerApi_1 = require("./routerApi");
 let app = express();
 let RedisStore = connectRedis(session);
 // view engine setup
@@ -33,10 +33,10 @@ app.use(session({
     secret: 'what ever secret'
 }));
 //路由
-app.use('/', router);
+app.use('/', routerWeb_1.default);
 //api
 //todo cors是做什么的？
-app.use('/api/', cors(), apiRouter);
+app.use('/api/', cors(), routerApi_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     /*  let err = new Error('Not Found');

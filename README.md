@@ -47,7 +47,7 @@ npm install --save @types/xx
 ```
 .
 ├── app.js                //？？？
-├── routerWeb.js             //路由
+├── routerWeb.ts             //路由
 ├── bin                   //？？？                    
 │   └── www
 ├── package.json          
@@ -57,7 +57,7 @@ npm install --save @types/xx
 │   └── stylesheets
 │       └── style.css
 ├── routes                //路由[不用了]
-│   ├── index.js
+│   ├── index.ts
 │   └── users.js
 └── views                 //页面模板
     ├── error.jade

@@ -1,6 +1,7 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const Promise = require("bluebird");
-const request = Promise.promisifyAll(require("request"));
+let request = Promise.promisifyAll(require("request"));
 let image = function (req, res, next) {
     let url = req.query.url;
     request.get({

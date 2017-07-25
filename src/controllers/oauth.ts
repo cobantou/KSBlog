@@ -1,5 +1,5 @@
-const config = require('../config');
-const Promise = require("bluebird");
+import config from '../config';
+import Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
 
 let github = function (req, res, next) {

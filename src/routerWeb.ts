@@ -38,4 +38,9 @@ router.get('/oauth/githubCallback', oauthController.githubCallback);
 router.get('/fileProxy/image/', fileProxyController.image);
 
 
+/*
 module.exports = router;
+*/
+
+export default router;
+

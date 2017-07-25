@@ -1,11 +1,12 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
-const config = require('../config');
+const config_1 = require("../config");
 const marked = require('marked');
 let index = function (req, res, next) {
-    let clientId = config.github.clientId;
-    let clientSecret = config.github.clientSecret;
+    let clientId = config_1.default.github.clientId;
+    let clientSecret = config_1.default.github.clientSecret;
     let session = req.session;
     //评论列表
     request.getAsync({

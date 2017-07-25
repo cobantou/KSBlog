@@ -1,9 +1,10 @@
 "use strict";
-const config = require('../config');
+Object.defineProperty(exports, "__esModule", { value: true });
+const config_1 = require("../config");
 const Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
 let github = function (req, res, next) {
-    res.redirect("https://github.com/login/oauth/authorize?client_id=" + config.github.clientId + "&scope=repo");
+    res.redirect("https://github.com/login/oauth/authorize?client_id=" + config_1.default.github.clientId + "&scope=repo");
 };
 exports.github = github;
 /**
@@ -16,8 +17,8 @@ exports.github = github;
  * @param next
  */
 let githubCallback = function (req, res, next) {
-    let clientId = config.github.clientId;
-    let clientSecret = config.github.clientSecret;
+    let clientId = config_1.default.github.clientId;
+    let clientSecret = config_1.default.github.clientSecret;
     let code = req.query.code;
     request.postAsync({
         headers: {

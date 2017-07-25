@@ -1,6 +1,6 @@
-const Promise = require("bluebird");
+import Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
-const config = require('../config');
+import config from '../config';
 const marked = require('marked');
 
 

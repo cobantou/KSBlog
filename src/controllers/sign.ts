@@ -1,6 +1,6 @@
-const Promise = require("bluebird");
+import Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
-const config = require('../config');
+import config from '../config';
 
 let login = function (req, res, next) {
     res.render('login', {title: 'Express', clientId: config.github.clientId});

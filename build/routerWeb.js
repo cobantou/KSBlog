@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const config = require('./config');
 const express = require('express');
 const indexController = require('./controllers/index');
@@ -27,4 +28,7 @@ router.get('/oauth/github', oauthController.github);
 router.get('/oauth/githubCallback', oauthController.githubCallback);
 /* fileProxy */
 router.get('/fileProxy/image/', fileProxyController.image);
+/*
 module.exports = router;
+*/
+exports.default = router;

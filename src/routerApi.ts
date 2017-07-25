@@ -11,4 +11,8 @@ router.post("/test",testController.postTest);
 router.post("/login",signController.login);
 
 
+/*
 module.exports = router;
+*/
+
+export default router;

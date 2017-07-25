@@ -9,8 +9,8 @@ import bodyParser = require('body-parser');
 import lessMiddleware = require('less-middleware');
 import cors = require('cors');
 
-import router = require('./routerWeb');
-import apiRouter = require('./routerApi');
+import router from './routerWeb';
+import apiRouter from './routerApi';
 
 let app = express();
 let RedisStore = connectRedis(session);

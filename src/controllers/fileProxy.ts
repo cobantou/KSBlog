@@ -1,9 +1,8 @@
-const Promise = require("bluebird");
-const request = Promise.promisifyAll(require("request"));
+import Promise = require("bluebird");
+let request = Promise.promisifyAll(require("request"));
 
 let image = function (req, res, next) {
     let url = req.query.url
-
     request.get({
         url: url,
     }).pipe(res)

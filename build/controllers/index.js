@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
 let index = function (req, res, next) {

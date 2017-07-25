@@ -1,4 +1,4 @@
-const Promise = require("bluebird");
+import Promise = require("bluebird");
 const request = Promise.promisifyAll(require("request"));
 
 

@@ -1,7 +1,7 @@
 {
   "apps" : [{
     "name" : "ksblog",  //名称
-    "script": "./bin/www", //程序入库
+    "script": "./build/bin/www.js", //程序入库
     "cwd": "./",           //根目录
     "watch":[
       "bin",

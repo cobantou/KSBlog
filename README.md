@@ -1,7 +1,6 @@
 # 预览
 ```angular2html
-https://aqueous-dawn-41720.herokuapp.com/
-
+http://39.108.73.158:3001/
 ```
 # 下载项目
 ```

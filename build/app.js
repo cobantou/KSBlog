@@ -40,10 +40,9 @@ app.use('/', routerWeb_1.default);
 app.use('/api/', cors(), routerApi_1.default);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    /*  let err = new Error('Not Found');
-     err.status = 404;*/
-    res.status(500).json({ error: 'message' });
-    next(res);
+    let err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 // error handler
 app.use(function (err, req, res, next) {

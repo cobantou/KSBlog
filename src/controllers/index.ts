@@ -24,7 +24,7 @@ export let index = function (req, res, next) {
           title: 'WhatEver',
           articles: body,
           recommendations: [{title: "title1", url: ""}],
-          userInfo: session.userInfo
+          userInfo: session && session.userInfo
         }
       }
 

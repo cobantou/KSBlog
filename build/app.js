@@ -4,6 +4,7 @@ const express = require("express");
 const session = require("express-session");
 const connectRedis = require("connect-redis");
 const path = require("path");
+const favicon = require("serve-favicon");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
@@ -14,16 +15,16 @@ const routerApi_1 = require("./routerApi");
 let app = express();
 let RedisStore = connectRedis(session);
 // view engine setup
-app.set('views', path.resolve(__dirname, '..','views'));
+app.set('views', path.resolve(__dirname, '..', 'views'));
 app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.resolve(__dirname, '..', 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(lessMiddleware(path.resolve(__dirname, '..','public')));
-app.use(express.static(path.resolve(__dirname, '..','public')));
+app.use(lessMiddleware(path.resolve(__dirname, '..', 'public')));
+app.use(express.static(path.resolve(__dirname, '..', 'public')));
 // 设置 Session
 app.use(session({
     name: "WTID",

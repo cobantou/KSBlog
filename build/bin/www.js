@@ -3,6 +3,7 @@
 const app = require('../app');
 const debug = require('debug')('ksblog:server');
 const http = require('http');
+const moment = require('moment');
 /**
  * Get port from environment and store in Express.
  */
@@ -67,3 +68,13 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
+/**
+ * socket.io
+ */
+const io = require('socket.io')(server);
+io.on('connection', function (socket) {
+    io.emit('chat message', { msg: '来了1位新人～', time: moment(new Date()).format("YYYY-MM-DD HH:mm:ss") });
+    socket.on('chat message', function (msg) {
+        io.emit('chat message', { msg, time: moment(new Date()).format("YYYY-MM-DD HH:mm:ss") });
+    });
+});

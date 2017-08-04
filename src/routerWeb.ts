@@ -6,6 +6,7 @@ import {githubCallback, github} from './controllers/oauth';
 import {login, signout} from './controllers/sign';
 import {image} from './controllers/fileProxy';
 import {postGithub, index as writeIndex} from './controllers/write';
+import {chatRoom} from './controllers/socket';
 
 
 let router = express.Router();
@@ -38,6 +39,8 @@ router.get('/oauth/githubCallback', githubCallback);
 /* fileProxy */
 router.get('/fileProxy/image/', image);
 
+/* socket. */
+router.get('/chatRoom', chatRoom);
 
 /*
  module.exports = router;

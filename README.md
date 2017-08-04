@@ -1,3 +1,13 @@
+# 简介
+一个基于express的项目，技术栈为Express+Typescript+redis+bluebird+jade+AmazeUI+Socket.IO。
+
+实现的功能有：
+1. 拉取知乎数据并展示；
+2. github第三方登陆；
+3. 通过github账号发表评论；
+4. 聊天室功能（待做）；
+5. 数据图表可视化展示（待做）；
+6. 3D立体ac娘（待做）；
 # 预览
 [http://39.108.73.158:3001/](http://39.108.73.158:3001/)
 

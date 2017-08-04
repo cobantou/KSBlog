@@ -7,6 +7,7 @@ const oauth_1 = require("./controllers/oauth");
 const sign_1 = require("./controllers/sign");
 const fileProxy_1 = require("./controllers/fileProxy");
 const write_1 = require("./controllers/write");
+const socket_1 = require("./controllers/socket");
 let router = express.Router();
 /* home page. */
 router.get('/', index_1.index);
@@ -28,6 +29,8 @@ router.get('/oauth/github', oauth_1.github);
 router.get('/oauth/githubCallback', oauth_1.githubCallback);
 /* fileProxy */
 router.get('/fileProxy/image/', fileProxy_1.image);
+/* socket. */
+router.get('/chatRoom', socket_1.chatRoom);
 /*
  module.exports = router;
  */

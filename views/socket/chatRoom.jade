@@ -1,0 +1,62 @@
+//Created by pengshuo on 17/5/31.
+extends ../layout
+
+block content
+    style.
+        pre {
+            padding:0
+        }
+        #msgForm{
+            position: fixed;
+            bottom: 20px;
+        }
+
+
+    link(rel='stylesheet', href='https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css')
+    script(src='/javascripts/socket.io.js')
+    script(src='/javascripts/jquery-3.2.1.min.js')
+    script.
+        $(function () {
+          var socket = io();
+
+          function msgTpl(msg){
+            return `<li class="am-comment">
+              <a href="#link-to-user-home">
+                <img src="http://cdn.aixifan.com/dotnet/20130418/umeditor/dialogs/emotion/images/ac/16.gif" alt="" class="am-comment-avatar" width="48" height="48">
+              </a>
+              <div class="am-comment-main">
+                <header class="am-comment-hd">
+                  <div class="am-comment-meta">
+                    <a href="#link-to-user" class="am-comment-author">${msg.name||"某人"}</a>
+                    评论于 <time datetime="2013-07-27T04:54:29-07:00" title="2013年7月27日 下午7:54 格林尼治标准时间+0800">${msg.time}</time></div>
+                </header>
+                <div class="am-comment-bd">
+                  <p>${msg.msg}</p>
+                </div>
+              </div>
+            </li>`
+          }
+
+          $('#msgForm').submit(function () {
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
+          });
+
+          socket.on('chat message', function (msg) {
+            $('#messages').append(msgTpl(msg))
+            });
+          });
+
+    .am-u-md-12
+
+    .am-u-md-12
+        ul.am-comments-list.am-comments-list-flip(id='messages')
+    .am-u-md-12
+      form.am-form(id='msgForm')
+        .am-input-group
+          input.am-form-field(type='text' id='m')
+          span.am-input-group-btn
+            button.am-btn.am-btn-primary(type='submit' data-am-sticky="{top:0,animation: 'slide-top'}") 发送
+
+

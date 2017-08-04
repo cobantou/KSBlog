@@ -1,6 +1,6 @@
 # 预览
 ```angular2html
-http://39.108.73.158:3001/
+[http://39.108.73.158:3001/](http://39.108.73.158:3001/)
 ```
 # 下载项目
 ```
@@ -42,25 +42,3 @@ npm install --save @types/xx
 
 ```
 
-# 目录结构
-```
-.
-├── app.js                //？？？
-├── routerWeb.ts             //路由
-├── bin                   //？？？                    
-│   └── www
-├── package.json          
-├── public                //公共的静态文件？
-│   ├── images
-│   ├── javascripts
-│   └── stylesheets
-│       └── style.css
-├── routes                //路由[不用了]
-│   ├── index.ts
-│   └── users.js
-└── views                 //页面模板
-    ├── error.jade
-    ├── index.jade
-    └── layout.jade
-
-```

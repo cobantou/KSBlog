@@ -57,7 +57,9 @@ exports.githubCallback = function (req, res, next) {
         });
     }).then((info) => {
         let session = req.session;
-        session.userInfo = info;
+        if (session) {
+            session.userInfo = info;
+        }
         res.redirect('/');
     });
 };

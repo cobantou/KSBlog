@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "supervisor ./build/bin/www",
     "debugger": "supervisor --debug-brk --inspect ./build/bin/www",
-    "pm2-dev": "pm2-dev start processes.json",
-    "pm2": "pm2 start processes.json"
+    "pm2-dev": "NODE_ENV=dev pm2-dev start processes.json",
+    "pm2": "NODE_ENV=prod pm2 start processes.json"
   },
   "dependencies": {
     "bluebird": "^3.5.0",

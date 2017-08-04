@@ -4,14 +4,11 @@
     "script": "./build/bin/www.js", //程序入库
     "cwd": "./",           //根目录
     "watch":[
-      "bin",
-      "common",
-      "configs",
+      "./build/bin",
       "public",
-      "routes",
       "views",
-      "controllers",
-      "api"
+      "./build/controllers",
+      "./build/api"
     ],//需要监控的目录
     "error_file":"./logs/app-err.log",//错误输出日志
     "out_file":"./logs/app-out.log",  //日志

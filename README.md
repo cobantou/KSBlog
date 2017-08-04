@@ -1,7 +1,6 @@
 # 预览
-```angular2html
 [http://39.108.73.158:3001/](http://39.108.73.158:3001/)
-```
+
 # 下载项目
 ```
 git clone https://github.com/cobantou/KSBlog.git

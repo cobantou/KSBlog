@@ -28,7 +28,7 @@ exports.index = function (req, res, next) {
     }).then((comments) => {
         let resData = {
             title: "写点什么",
-            userInfo: session.userInfo,
+            userInfo: session && session.userInfo,
             client_id: clientId,
             client_secret: clientSecret,
             comments: comments

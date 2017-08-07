@@ -1,0 +1,98 @@
+//Created by pengshuo on 17/5/31.
+extends ../layout
+
+block content
+  style.
+    pre {
+      padding: 0
+    }
+
+    #msgForm {
+      position: fixed;
+      bottom: 20px;
+    }
+
+
+  link(rel='stylesheet', href='https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css')
+  script(src='https://a.alipayobjects.com/g/datavis/g2/2.3.8/index.js')
+  script(src='/javascripts/jquery-3.2.1.min.js')
+  script.
+    $(function () {
+
+      var data = [
+        {genre: 'Sports', sold: 275},
+        {genre: 'Strategy', sold: 115},
+        {genre: 'Action', sold: 120},
+        {genre: 'Shooter', sold: 350},
+        {genre: 'Other', sold: 150},
+      ]; // G2 对数据源格式的要求，仅仅是 JSON 数组，数组的每个元素是一个标准 JSON 对象。
+      // Step 1: 创建 Chart 对象
+      var chart = new G2.Chart({
+        id: 'g2-contanier', // 指定图表容器 ID
+        width: 600, // 指定图表宽度
+        height: 300 // 指定图表高度
+      });
+      var Stat = G2.Stat;
+      // Step 2: 载入数据源,定义列信息
+      chart.source(data, {
+        genre: {
+          alias: '游戏种类' // 列定义，定义该属性显示的别名
+        },
+        sold: {
+          alias: '销售量'
+        }
+      });
+
+      function changeChartType(type){
+        switch (type){
+          case 'pie':
+            chart.clear()
+            chart.coord('theta', {
+              radius: 0.8 // 设置饼图的大小
+            });
+            chart.intervalStack().position(Stat.summary.percent('sold')).color('genre')
+              .label('genre*..percent', function (genre, percent) {
+                percent = (percent * 100).toFixed(2) + '%';
+                return genre + ' ' + percent;
+              })
+            chart.render();
+            break;
+          case 'bar':
+            chart.clear()
+            chart.coord('rect', {
+              radius: 1
+            });
+            chart.interval().position('genre*sold').color('genre');
+            chart.render();
+            break;
+          case 'rose':
+            chart.clear()
+            chart.coord('polar', {inner: 0.1});
+            chart.intervalStack().position('genre*sold').color('genre');
+            chart.render();
+            break;
+        }
+      }
+
+      changeChartType("pie");
+
+      $("#pie").on("click",function(){
+        changeChartType("pie")
+      })
+      $("#bar").on("click",function(){
+        changeChartType("bar")
+      })
+      $("#rose").on("click",function(){
+        changeChartType("rose")
+      })
+
+    });
+
+  .am-u-md-12
+    div
+      button.am-btn.am-btn-secondary.am-round(type="button" id="pie") 饼图
+      button.am-btn.am-btn-secondary.am-round(type="button" id="bar") 柱状图
+      button.am-btn.am-btn-secondary.am-round(type="button" id="rose") 玫瑰图
+    div(id='g2-contanier')
+
+

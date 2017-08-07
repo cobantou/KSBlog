@@ -28,19 +28,18 @@ html
                         a(href='/write') 写点什么
                     li
                         a(href='/chatroom') 聊天室
-                    //
-                      li.am-dropdown(data-am-dropdown='')
-                          a.am-dropdown-toggle(data-am-dropdown-toggle='', href='javascript:;')
-                              | 菜单
-                              span.am-icon-caret-down
-                          ul.am-dropdown-content
-                              li.am-dropdown-header 标题
-                              li
-                                  a(href='#') 关于我们
-                              li
-                                  a(href='#') 关于字体
-                              li
-                                  a(href='#') TIPS
+                    li.am-dropdown(data-am-dropdown='')
+                      a.am-dropdown-toggle(data-am-dropdown-toggle='', href='javascript:;')
+                        | 数据可视化
+                        span.am-icon-caret-down
+                      ul.am-dropdown-content
+                        li.am-dropdown-header 图表类
+                        li
+                          a(href='/g2') g2
+                        li.am-dropdown-header 3D
+                        li
+                          a(href='#') ac娘
+
                 form.am-topbar-form.am-topbar-left.am-form-inline.am-topbar-left(role='search')
                     .am-form-group
                         input.am-form-field.am-input-sm(type='text', placeholder='搜索文章')

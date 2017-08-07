@@ -7,6 +7,7 @@ import {login, signout} from './controllers/sign';
 import {image} from './controllers/fileProxy';
 import {postGithub, index as writeIndex} from './controllers/write';
 import {chatRoom} from './controllers/socket';
+import {g2} from './controllers/g2';
 
 
 let router = express.Router();
@@ -41,6 +42,12 @@ router.get('/fileProxy/image/', image);
 
 /* socket. */
 router.get('/chatRoom', chatRoom);
+
+/* g2 */
+router.get('/g2', g2);
+
+/* three.js */
+/*router.get('/ac', ac);*/
 
 /*
  module.exports = router;

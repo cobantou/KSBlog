@@ -20,7 +20,7 @@ block content
           var socket = io();
 
           function msgTpl(msg){
-            return `<li class="am-comment">
+            return `<li class="am-comment ">
               <a href="#link-to-user-home">
                 <img src="http://cdn.aixifan.com/dotnet/20130418/umeditor/dialogs/emotion/images/ac/16.gif" alt="" class="am-comment-avatar" width="48" height="48">
               </a>
@@ -45,11 +45,24 @@ block content
 
           socket.on('chat message', function (msg) {
             $('#messages').append(msgTpl(msg))
-            });
           });
 
-    .am-u-md-12
+          socket.on('user connected', function (msg) {
+            msg.name="系统管理员";
+            $('#messages').append(msgTpl(msg))
+            $('#usersNum').html(msg.users)
+          });
 
+          socket.on('user disconnected', function (msg) {
+            msg.name="系统管理员";
+            $('#messages').append(msgTpl(msg));
+            $('#usersNum').html(msg.users)
+          });
+        });
+
+    .am-u-md-12
+        div 当前在线：
+          span.am-badge.am-badge-success(id="usersNum") 0
     .am-u-md-12
         ul.am-comments-list.am-comments-list-flip(id='messages')
     .am-u-md-12

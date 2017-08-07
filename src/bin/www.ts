@@ -94,11 +94,29 @@ function onListening() {
  */
 const io = require('socket.io')(server);
 
+let users=0;
+
 io.on('connection', function (socket) {
-  io.emit('chat message', {msg: '来了1位新人～', time: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")});
+  console.log(socket.request.headers.cookie)
+  ++users;
+
+  io.emit('user connected', {
+    msg: '来了1位新人～',
+    time: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+    users
+  });
 
   socket.on('chat message', function (msg) {
     io.emit('chat message', {msg, time: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")});
+  });
+
+  socket.on('disconnect', function () {
+    --users;
+    io.emit('user disconnected',{
+      msg: '有人离开了～',
+      time: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+      users
+    });
   });
 
 });
